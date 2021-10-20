@@ -1,0 +1,20 @@
+{
+  "name": "nn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "run": "node index.mjs",
+    "image-filter": "node image-filter.mjs",
+    "image-renderer": "node image-renderer.mjs",
+    "test": "mocha entity/*.test.mjs --exit"
+  },
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "chai": "^4.3.4",
+    "color": "^4.0.1",
+    "fs": "^0.0.1-security",
+    "mocha": "^9.1.3",
+    "object-path": "^0.11.8"
+  }
+}
