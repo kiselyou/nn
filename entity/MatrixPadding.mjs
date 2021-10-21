@@ -4,22 +4,14 @@ import Vector from './Vector.mjs'
 
 export default class MatrixPadding extends ArrayVector {
     /**
-     * width size of matrix - Required
-     * deep size of vector - Optional
-     *
-     * @param {Array} input
-     * @param {Object|{ width: number, deep: number, top: 1, right: 1, bottom: 1, left: 1 }} options
+     * @param {Matrix} matrix
+     * @param {Object|{ top: 1, right: 1, bottom: 1, left: 1, value: 0 }} options
      * @returns {MatrixPadding|Vector[]}
      */
-    create(input, options = { width: undefined, deep: undefined, top: 1, right: 1, bottom: 1, left: 1 }) {
-        const width = objectPath.get(options, ['width'])
-        if (!width) {
-            throw new Error("Incorrect parameter 'options.width'.")
-        }
-
-        const deep = objectPath.get(options, ['deep'], null) || 0
-        let value = objectPath.get(options, ['value'], null) || 0
-        value = deep === 0 ? value : new Vector().create(deep, value)
+    create(matrix, options = { top: 1, right: 1, bottom: 1, left: 1, value: 0 }) {
+        const width = matrix.width
+        let value = objectPath.get(options, ['value'], 0)
+        value = new Vector().create(matrix.deep, value)
 
         const top = objectPath.get(options, ['top'], null) || 0
         const left = objectPath.get(options, ['left'], null) || 0
@@ -33,13 +25,10 @@ export default class MatrixPadding extends ArrayVector {
             result.push(new Vector().create(length, value))
         }
 
-        const arrayVector = new ArrayVector().create(input, deep)
-        const rows = super.create(arrayVector, width)
-
-        for (let i = 0; i < rows.length; i++) {
+        for (let i = 0; i < matrix.length; i++) {
             let row = []
-            row = row.concat(new Vector().create(left, value)) // left border
-            row = row.concat(rows[i]) // body
+            row = row.concat(new Vector().create(left, value))  // left border
+            row = row.concat(matrix[i])                         // body
             row = row.concat(new Vector().create(right, value)) // right border
             result.push(row)
         }

@@ -5,8 +5,8 @@ import objectPath from 'object-path'
 export default class MatrixConvolution extends ArrayVector {
     /**
      *
-     * @param {Array} input
-     * @param {Object|{ filter: Array, stepY: number|?, stepX: number|? }} options
+     * @param {Array|Matrix} input
+     * @param {Object|{ filter: Array, stepY: (number|?), stepX: (number|?) }} options
      * @returns {MatrixConvolution|Vector[]}
      */
     create(input, options = { filter: undefined, stepY: 1, stepX: 1 }) {
