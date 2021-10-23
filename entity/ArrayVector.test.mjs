@@ -3,10 +3,10 @@ import chai from 'chai'
 
 describe('ArrayVector', function() {
     it('Should create ArrayVector 4', () => {
-        const v = new ArrayVector().create([100, 20, 30, 255, 122, 25, 10, 255], 4)
-        chai.expect(v).to.be.deep.equal([[100, 20, 30, 255], [122, 25, 10, 255]])
+        const v = new ArrayVector().create([100, 0, 30, 255, 122, 25, 10, 255], 4)
+        chai.expect(v).to.be.deep.equal([[100, 0, 30, 255], [122, 25, 10, 255]])
         chai.expect(v.length).to.be.equal(2)
-        chai.expect(v.value(0)).to.be.deep.equal([100, 20, 30, 255])
+        chai.expect(v.value(0)).to.be.deep.equal([100, 0, 30, 255])
         chai.expect(v.value(1)).to.be.deep.equal([122, 25, 10, 255])
     })
 

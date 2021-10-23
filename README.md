@@ -1,7 +1,7 @@
 NN
 --
 
-###### Pooling: В чем разница между заполнением "SAME" и "VALID"
+###### Pooling|Convolution: В чем разница между заполнением "SAME" и "VALID"
 
 - VALID
   - без отступов
@@ -18,6 +18,7 @@ Example:
 ```js
 import Matrix from './entity/Matrix.mjs'
 import MatrixPadding from './entity/MatrixPadding.mjs'
+import MatrixPooling from './entity/MatrixPooling.mjs'
 import MatrixConvolution from './entity/MatrixConvolution.mjs'
 
 const input = [
@@ -50,12 +51,12 @@ const matrix = [
 ]
 */
 
-const output = new MatrixPadding().create(matrix, { 
-    width: 5, deep: 2, top: 1, right: 2, bottom: 2, left: 1 
+const matrixPadding = new MatrixPadding().create(matrix, { 
+    width: 5, deep: 2, top: 1, right: 2, bottom: 1, left: 1 
   })
 
 /*
-const output = [
+const matrixPadding = [
    [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
    [[0, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 0], [0, 0]],
    [[0, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 0], [0, 0]],
@@ -67,7 +68,6 @@ const output = [
    [[0, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 0], [0, 0]],
    [[0, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 0], [0, 0]],
    [[0, 0], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [0, 0], [0, 0]],
-   [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
    [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
 ]
 */
@@ -94,10 +94,21 @@ const expectMatrixConvolution = [
   [[3,  3],[0,  0],[0,  0],[0,  0],[3,  3],[-3,-3]],
   [[3,  3],[0,  0],[0,  0],[0,  0],[3,  3],[-3,-3]],
   [[5,  5],[3,  3],[3,  3],[3,  3],[5,  5],[-2,-2]],
-  [[-2,-2],[-3,-3],[-3,-3],[-3,-3],[-2,-2],[-1,-1]]
 ]
 */
 
-chai.expect(expectMatrixConvolution).to.be.deep.equal(matrixConvolution)
+const matrixPooling = new MatrixPooling().create(matrixConvolution, { 
+    type: MatrixPooling.TYPE_MAX, filterX: 2, filterY: 2 
+})
+
+/*
+const expectMatrixPooling = [
+  [[5,5],[3,3],[5,5]],
+  [[3,3],[0,0],[3,3]],
+  [[3,3],[0,0],[3,3]],
+  [[3,3],[0,0],[3,3]],
+  [[5,5],[3,3],[5,5]]
+]
+*/
 
 ```

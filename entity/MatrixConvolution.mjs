@@ -35,7 +35,7 @@ export default class MatrixConvolution extends ArrayVector {
             if (input[y + filterY][x + filterX] === undefined) {
                 // Переход на новую строку с шагом.
                 y += stepY
-                // Перставить курсор в начало.
+                // Переставить курсор в начало.
                 x = 0
 
                 res.push(new Vector().set(tmp))
@@ -46,8 +46,6 @@ export default class MatrixConvolution extends ArrayVector {
             if (input[y + filterY] === undefined) {
                 break
             }
-
-            // console.log(y, x)
 
             const score = []
             for (let yy = 0; yy < filter.length; yy++) {
@@ -60,7 +58,7 @@ export default class MatrixConvolution extends ArrayVector {
 
             tmp.push(new Vector().addVectors(score))
 
-            // Перставить курсор с шагом.
+            // Переставить курсор с шагом.
             x += stepX
         }
 

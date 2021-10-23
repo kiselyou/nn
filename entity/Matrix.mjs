@@ -20,20 +20,4 @@ export default class Matrix extends ArrayVector {
     super.create(arrayVector, width)
     return this
   }
-
-  /**
-   *
-   * @returns {number}
-   */
-  get width() {
-    return this.hasOwnProperty(0) ? this[0].length : 0
-  }
-
-  /**
-   *
-   * @returns {number}
-   */
-  get deep() {
-    return this.hasOwnProperty(0) && this[0].hasOwnProperty(0) ? this[0][0].length : 0
-  }
 }

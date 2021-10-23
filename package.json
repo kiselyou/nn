@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "run": "node index.mjs",
-    "image-filter": "node image-filter.mjs",
+    "image-nn": "node image-nn.mjs",
     "image-renderer": "node image-renderer.mjs",
     "test": "mocha entity/*.test.mjs --exit"
   },
